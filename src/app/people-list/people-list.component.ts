@@ -17,11 +17,14 @@ import { PeopleService } from "../people.service";
   styleUrls: ['./people-list.component.scss']
 })
 export class PeopleListComponent implements OnInit {
-  people: Person[];
+  people: Person[] = [];
 
   constructor(private peopleService: PeopleService) { }
 
   ngOnInit() {
-    this.people = this.peopleService.getAll();
+    this.peopleService
+        .getAll()
+        .subscribe(p => this.people = p);
   }
 }
+
